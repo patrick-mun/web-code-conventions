@@ -1,0 +1,10 @@
+/* ── TOKENS ─────────────────────────────
+   Valeurs uniquement. Seul fichier où les valeurs brutes sont permises.
+*/
+:root {
+  --white-40: rgb(255 255 255 / 40%);
+  --white-60: rgb(255 255 255 / 60%);
+  --space-4: 16px;
+  --space-5: 24px;
+  --radius-md: 12px;
+}

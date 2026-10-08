@@ -1,0 +1,13 @@
+/* ── PANNEAU ─────────────────────────────
+   Utilise uniquement les tokens (voir tokens.apres.css).
+*/
+.panel {
+  padding: var(--space-4) var(--space-5);
+  background: var(--white-60);
+  border-radius: var(--radius-md);
+}
+
+.panel-note {
+  margin-top: var(--space-4);
+  color: var(--white-40);
+}
