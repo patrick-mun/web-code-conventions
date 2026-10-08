@@ -13,9 +13,6 @@ export default {
     'scale-unlimited/declaration-strict-value': [
       [
         '/color$/',
-        'background',
-        'border',
-        'outline',
         'fill',
         'stroke',
         'margin',
@@ -40,6 +37,8 @@ export default {
     // CSS-23, 24 : pas d'identifiant, deux niveaux au plus
     'selector-max-id': 0,
     'selector-max-compound-selectors': 2,
+    // Préfixe Safari conservé : -webkit-backdrop-filter doit rester à côté de backdrop-filter
+    'property-no-vendor-prefix': [true, { ignoreProperties: ['-webkit-backdrop-filter'] }],
     // CSS-24 : pas de classe qualifiée par un élément (ul.menu)
     'selector-no-qualifying-type': [true, { ignore: ['attribute'] }],
     // CSS-25 : !important interdit sauf dérogation décrite
@@ -83,6 +82,11 @@ export default {
     // CSS-40 : pas de outline: none sans dérogation décrite
     'declaration-property-value-disallowed-list': {
       '/^outline(-style)?$/': ['none', '0'],
+      // CSS-10 : aucune couleur en dur dans les raccourcis (border, background, outline…)
+      '/.*/': [
+        '/#[0-9a-fA-F]{3,8}\\b/',
+        '/\\b(?:rgb|rgba|hsl|hsla|hwb|lab|lch|oklab|oklch)\\(/',
+      ],
     },
 
     // CSS-05 : un seul sens de media query (max-width par défaut).
@@ -95,7 +99,10 @@ export default {
     {
       // Le fichier de tokens est le seul endroit où les valeurs brutes sont permises (nom à adapter au projet).
       files: ['**/tokens*.css'],
-      rules: { 'scale-unlimited/declaration-strict-value': null },
+      rules: {
+        'scale-unlimited/declaration-strict-value': null,
+        'declaration-property-value-disallowed-list': null,
+      },
     },
   ],
 };

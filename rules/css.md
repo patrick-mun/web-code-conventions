@@ -59,8 +59,10 @@ Contrôle : [JUGEMENT]
 ### CSS-10 — Aucune couleur en dur
 Pas de `#hex`, `rgb()`, `rgba()`, `hsl()` hors du fichier de tokens. Les règles
 utilisent `var(--…)`.
-Contrôle : [AUTO] Stylelint `scale-unlimited/declaration-strict-value`.
-Exemple : `examples/css/tokens.*.css` et `panel.apres.css`.
+Contrôle : [AUTO] Stylelint `scale-unlimited/declaration-strict-value` pour les
+propriétés de couleur, et `declaration-property-value-disallowed-list` pour les
+couleurs dans les raccourcis (`border`, `background`, dégradés…).
+Exemple : `examples/css/tokens.*.css`, `panel.apres.css` et `shorthand.*.css`.
 
 ### CSS-11 — Échelle d'espacement
 Une échelle `--space-*` existe (valeurs dans le profil). `margin`, `padding` et

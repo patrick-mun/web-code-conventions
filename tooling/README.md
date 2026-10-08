@@ -44,5 +44,5 @@ Adaptations par projet (CSS) :
 - Les échelles (CSS-11, CSS-14) viennent du profil ; l'outil impose l'usage de `var(--…)`, pas les valeurs.
 
 Les outils sont vérifiés par `check-tools.mjs`. Configuration vérifiée sur les paires de `examples/css/` : tous les `*.apres.css` passent,
-les `*.avant.css` échouent. Les `*.apres.html` passent html-validate, Prettier et `check-html.mjs`, les
-`*.avant.html` échouent. Les `*.apres.js` passent ESLint et Prettier, les `*.avant.js` échouent. Non couvert par les outils : CSS-02 à 04, 06, 13, 41 à 43, 50 à 52, HTML-02, 32, 42, 60, 61 et une partie de HTML-11, 30, 40, 41 ; JS-02, 14, 21 à 23, 40, 50 à 53 et une partie de JS-01, 12, 13, 20, 30.
+les `*.avant.css` des règles automatisables échouent (`comments.avant.css` et `media-query.avant.css` illustrent des règles de jugement et passent les outils). Les `*.apres.html` passent html-validate, Prettier et `check-html.mjs`, les
+`*.avant.html` échouent. Les `*.apres.js` passent ESLint et Prettier, les `*.avant.js` des règles automatisables échouent (`comments.avant.js` illustre une règle de jugement). Non couvert par les outils : CSS-02 à 04, 06, 13, 41 à 43, 50 à 52, HTML-02, 32, 42, 60, 61 et une partie de HTML-11, 30, 40, 41 ; JS-02, 14, 21 à 23, 40, 50 à 53 et une partie de JS-01, 12, 13, 20, 30.
