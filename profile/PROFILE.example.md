@@ -4,6 +4,10 @@
 
 `web-code-conventions` : `v1.0`
 
+## Titre de page (HTML-02)
+
+Format du `<title>` : `Nom de la page | Atelier Exemple`
+
 ## Fichier de tokens
 
 `docs/design-tokens.md`

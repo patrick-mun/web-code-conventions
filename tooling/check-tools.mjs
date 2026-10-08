@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 // Vérifie la présence des outils nécessaires aux règles [AUTO] du skill.
-// Usage : node check-tools.mjs [dossier-du-projet] [--lang css]
+// Usage : node check-tools.mjs [dossier-du-projet] [--lang css|html]
 // Sortie : tableau présent/absent/version. Code 0 si tout est présent, 1 sinon.
 // Limite : ne cherche que dans le projet (package.json, node_modules). Un outil
 // installé au niveau utilisateur n'est pas vu et sera signalé « absent ».
@@ -26,6 +26,13 @@ const REQUIRED = {
     ],
     configs: [
       { name: 'configuration Stylelint', files: ['stylelint.config.mjs', 'stylelint.config.js', 'stylelint.config.cjs', '.stylelintrc', '.stylelintrc.json', '.stylelintrc.yml', '.stylelintrc.yaml', '.stylelintrc.js', '.stylelintrc.cjs', '.stylelintrc.mjs'], packageKey: 'stylelint' },
+      { name: 'configuration Prettier', files: ['prettier.config.json', 'prettier.config.js', 'prettier.config.mjs', 'prettier.config.cjs', '.prettierrc', '.prettierrc.json', '.prettierrc.yml', '.prettierrc.yaml', '.prettierrc.js', '.prettierrc.mjs', '.prettierrc.cjs'], packageKey: 'prettier' },
+    ],
+  },
+  html: {
+    packages: ['prettier', 'html-validate'],
+    configs: [
+      { name: 'configuration html-validate', files: ['.htmlvalidate.json', '.htmlvalidate.js', '.htmlvalidate.cjs', '.htmlvalidate.mjs'], packageKey: 'htmlvalidate' },
       { name: 'configuration Prettier', files: ['prettier.config.json', 'prettier.config.js', 'prettier.config.mjs', 'prettier.config.cjs', '.prettierrc', '.prettierrc.json', '.prettierrc.yml', '.prettierrc.yaml', '.prettierrc.js', '.prettierrc.mjs', '.prettierrc.cjs'], packageKey: 'prettier' },
     ],
   },

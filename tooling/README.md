@@ -4,22 +4,34 @@
 |---|---|---|
 | `prettier.config.json` | Prettier | CSS-30 (forme) |
 | `stylelint.config.mjs` | Stylelint | CSS-05, 10 à 12, 14, 20 à 25, 30 à 32, 40 |
+| `htmlvalidate.json` | html-validate | HTML-12, 20, 30, 31, 40, 41 (et part de 01, 10, 11) |
+| `check-html.mjs` | Node, sans dépendance | HTML-01, 10, 21, 22, 43 (analyse par expressions régulières, pages complètes) |
 | `check-tools.mjs` | Node, sans dépendance | Détection des outils manquants |
 
-Vérifier la présence des outils (CSS seulement pour l'instant) :
+Vérifier la présence des outils (`css` ou `html`) :
 
 ```
 node check-tools.mjs <dossier-du-projet> --lang css
+node check-tools.mjs <dossier-du-projet> --lang html
 ```
 
 Code de sortie : 0 tout présent, 1 élément manquant, 2 langage non pris en
 charge. Le script ne cherche que dans le projet (`package.json`,
 `node_modules`) et ne vérifie pas le bon fonctionnement des outils.
 
+Le fichier `htmlvalidate.json` se copie dans le projet sous le nom `.htmlvalidate.json`
+(html-validate cherche la configuration à côté du fichier analysé, puis dans les
+dossiers parents). Contrôle HTML :
+
+```
+npx html-validate "<dossier>/**/*.html"
+node tooling/check-html.mjs <dossier>
+```
+
 Installation (projet) :
 
 ```
-npm i -D prettier stylelint stylelint-config-standard stylelint-order stylelint-declaration-strict-value
+npm i -D prettier stylelint stylelint-config-standard stylelint-order stylelint-declaration-strict-value html-validate
 ```
 
 Adaptations par projet :
@@ -28,5 +40,5 @@ Adaptations par projet :
 - Les échelles (CSS-11, CSS-14) viennent du profil ; l'outil impose l'usage de `var(--…)`, pas les valeurs.
 
 Les outils sont vérifiés par `check-tools.mjs`. Configuration vérifiée sur les paires de `examples/css/` : tous les `*.apres.css` passent,
-les `*.avant.css` échouent. Non couvert par les outils : CSS-01 (html-validate,
-config à venir avec HTML), CSS-02 à 04, 06, 13, 41, 42, 50 à 52.
+les `*.avant.css` échouent. Les `*.apres.html` passent html-validate, Prettier et `check-html.mjs`, les
+`*.avant.html` échouent. Non couvert par les outils : CSS-02 à 04, 06, 13, 41, 42, 50 à 52, HTML-02, 32, 42, 60, 61 et une partie de HTML-11, 30, 40, 41.
