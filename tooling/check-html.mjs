@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// Contrôles HTML que html-validate ne couvre pas (règles HTML-01, 10, 21, 22, 43).
+// Contrôles HTML que html-validate ne couvre pas (règles HTML-01, 10, 21, 22, 33, 34, 35, 43).
 // Usage : node check-html.mjs <fichier-ou-dossier>...
 // Sortie : erreurs (code 1) et avertissements. Analyse par expressions régulières :
 // pages complètes uniquement, les fragments et modèles de gabarit ne sont pas gérés.
@@ -73,6 +73,24 @@ for (const file of targets.flatMap(collect)) {
   if (mains !== 1) report('erreur', null, 'HTML-10', `${mains} élément(s) <main>, un seul attendu`);
   for (const tag of ['header', 'footer']) {
     if (!new RegExp(`<${tag}[\\s>]`, 'i').test(text)) report('erreur', null, 'HTML-10', `<${tag}> absent`);
+  }
+
+  // HTML-33 : ressources en HTTPS (ni http: ni //)
+  for (const m of text.matchAll(/<(?:[a-z][^>]*?\s(?:src|srcset|poster)|link\b[^>]*?\shref)\s*=\s*["'](?:http:|\/\/)/gi)) {
+    report('erreur', m.index, 'HTML-33', 'ressource en http: ou sans protocole, utiliser https: ou un chemin relatif');
+  }
+
+  // HTML-34 : pas de type inutile sur <script> et <link rel="stylesheet">
+  for (const m of text.matchAll(/<script\b[^>]*\stype\s*=\s*["'](?:text|application)\/(?:java|ecma)script["']/gi)) {
+    report('erreur', m.index, 'HTML-34', 'type inutile sur <script>');
+  }
+  for (const m of text.matchAll(/<link\b[^>]*\stype\s*=\s*["']text\/css["']/gi)) {
+    report('erreur', m.index, 'HTML-34', 'type inutile sur <link rel="stylesheet">');
+  }
+
+  // HTML-35 : pas d'entité pour un caractère UTF-8 (hors &lt; &gt; &amp; &quot; &apos; &nbsp;)
+  for (const m of text.matchAll(/&(?!(?:lt|gt|amp|quot|apos|nbsp);)(?:[a-z][a-z0-9]*|#\d+|#x[0-9a-f]+);/gi)) {
+    report('erreur', m.index, 'HTML-35', `entité ${m[0]} : écrire le caractère UTF-8`);
   }
 
   // HTML-43 : <br> pour la mise en forme (avertissement : l'intention relève du jugement)

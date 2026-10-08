@@ -15,8 +15,13 @@ Commentaires en français. Noms de variables et de fonctions en anglais.
 Le JS se charge par `<script type="module" src="…">` (HTML-22). Aucune
 variable globale : pas de `window.x = …`, pas d'IIFE. Un projet qui doit se
 charger sans serveur (ouverture directe de `file://`) déroge dans son profil.
-Contrôle : [MIXTE] ESLint `no-implicit-globals` et `sourceType: module` ;
-présence de `type="module"` en [JUGEMENT].
+Exports nommés uniquement, jamais d'`export default`. Les chemins d'import
+relatifs portent l'extension (`import { clamp } from './geometry.js'`), car un
+navigateur ne la devine pas.
+Contrôle : [MIXTE] ESLint `no-implicit-globals`, `sourceType: module` et
+`no-restricted-syntax` (export par défaut, extension manquante) ; présence de
+`type="module"` en [JUGEMENT].
+Exemple : `examples/js/modules.avant.js` → `modules.apres.js`.
 
 ### JS-02 — Point d'entrée par page
 Chaque page charge un seul fichier d'entrée, qui importe les modules dont elle
@@ -43,8 +48,9 @@ Contrôle : [AUTO] ESLint `no-restricted-syntax`.
 ### JS-12 — Événements
 `addEventListener` seulement, jamais `el.onclick = …` (HTML-21). Les écouteurs
 `scroll`, `touchstart`, `touchmove` et `wheel` reçoivent `{ passive: true }`.
-Le travail qui suit le défilement ou le pointeur est limité à une fois par
-image avec `requestAnimationFrame`.
+Le travail coûteux qui suit le défilement ou le pointeur est limité à une fois
+par image avec `requestAnimationFrame` ; un calcul trivial peut rester dans
+l'écouteur.
 Contrôle : [MIXTE] ESLint pour `on…=` et `passive` ; `requestAnimationFrame` en
 [JUGEMENT].
 Exemple : `examples/js/events.*.js`.
@@ -90,10 +96,11 @@ sur le code d'animation et n'est pas activée).
 ## Syntaxe et qualité
 
 ### JS-30 — Syntaxe moderne
-`const` par défaut, `let` si la valeur est réaffectée, jamais `var`. Égalité
+`const` par défaut, `let` si la valeur est réaffectée, jamais `var`. Une seule
+variable par déclaration (`const a = 1; const b = 2;`). Égalité
 stricte (`===`). Accolades obligatoires quand l'instruction tient sur plusieurs
 lignes. `async/await` plutôt que des chaînes de `.then()`.
-Contrôle : [MIXTE] ESLint `no-var`, `prefer-const`, `eqeqeq`, `curly` ;
+Contrôle : [MIXTE] ESLint `no-var`, `prefer-const`, `one-var`, `eqeqeq`, `curly` ;
 `async/await` en [JUGEMENT].
 
 ### JS-31 — Formatage
@@ -107,7 +114,8 @@ niveaux d'imbrication. Un avertissement appelle un découpage, pas un blocage.
 Contrôle : [AUTO] ESLint `max-lines-per-function`, `complexity`, `max-depth`.
 
 ### JS-33 — Pas de reste de débogage
-Pas de `console.*` laissé dans le code, pas de `catch` vide.
+Pas de `console.*` laissé dans le code, pas de `catch` vide sans commentaire
+qui explique pourquoi l'erreur est ignorée.
 Contrôle : [AUTO] ESLint `no-console` et `no-empty`.
 
 ## Accessibilité
@@ -115,6 +123,8 @@ Contrôle : [AUTO] ESLint `no-console` et `no-empty`.
 ### JS-40 — Mouvement réduit
 Toute animation décorative teste `prefers-reduced-motion` au démarrage
 (équivalent de CSS-41) : `window.matchMedia('(prefers-reduced-motion: reduce)')`.
+Une animation automatique de plus de 5 secondes offre un moyen de la mettre en
+pause (WCAG 2.2.2).
 Contrôle : [JUGEMENT]
 
 ## Commentaires (en français)
@@ -143,5 +153,6 @@ rôle, puis `@param` et `@returns` avec leurs types. Pas de types TypeScript.
 Contrôle : [JUGEMENT]
 
 ### JS-53 — Commentaire inline
-Seulement pour dire pourquoi, jamais ce que fait la ligne.
+Seulement pour dire pourquoi, jamais ce que fait la ligne. En fin de ligne, il
+n'explique que la valeur de cette ligne.
 Contrôle : [JUGEMENT]

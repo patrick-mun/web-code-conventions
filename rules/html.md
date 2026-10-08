@@ -27,7 +27,9 @@ Contrôle : [JUGEMENT]
 ### HTML-10 — Repères de page
 Chaque page a `<header>`, un seul `<main>` et `<footer>`, plus `<nav>` quand
 elle contient une navigation. Plusieurs repères du même type reçoivent un
-`aria-label` distinct.
+`aria-label` distinct. Quand la page a une navigation avant le contenu, un lien
+d'évitement « Aller au contenu » est le premier élément focalisable de
+`<body>` et pointe vers l'`id` du `<main>` (WCAG 2.4.1).
 Contrôle : [MIXTE] `no-multiple-main` et `unique-landmark` par html-validate ;
 présence de `<main>`, `<header>` et `<footer>` par `check-html.mjs`.
 
@@ -58,7 +60,8 @@ Exemple : `examples/html/scripts.*.html`.
 ### HTML-22 — Scripts
 Pas de `<script>` avec logique inline. Exception : des données
 (`type="application/json"`, `ld+json`, `importmap`). Les scripts externes sont
-dans `<head>` avec `defer` (ou `type="module"`).
+dans `<head>` : `type="module"` pour le JS du projet (JS-01), `defer` pour un
+script classique tiers.
 Contrôle : [MIXTE] `check-html.mjs`.
 Exemple : `examples/html/scripts.*.html`.
 
@@ -82,6 +85,23 @@ Contrôle : [AUTO] html-validate (`element-case`, `attr-case`, `attr-quotes`,
 Les données destinées au JS passent par des attributs `data-*` en kebab-case,
 ou par un bloc JSON (HTML-22).
 Contrôle : [JUGEMENT]
+
+### HTML-33 — Ressources en HTTPS
+Images, médias, feuilles de style et scripts se chargent en HTTPS ou par un
+chemin relatif ; jamais en `http:` ni en `//` (sans protocole).
+Contrôle : [AUTO] `check-html.mjs`.
+Exemple : `examples/html/resources.avant.html` → `resources.apres.html`.
+
+### HTML-34 — Pas d'attribut `type` inutile
+Pas de `type` sur `<link rel="stylesheet">` ni sur un `<script>` classique.
+`type` reste pour `module` et pour les blocs de données (HTML-22).
+Contrôle : [AUTO] `check-html.mjs`.
+
+### HTML-35 — Pas d'entité pour un caractère UTF-8
+On écrit `é`, `—`, `«`, pas `&eacute;`, `&mdash;`. Les entités restent pour les
+caractères qui ont un sens en HTML (`&lt;`, `&gt;`, `&amp;`, `&quot;`) et pour
+les caractères invisibles (`&nbsp;`).
+Contrôle : [AUTO] `check-html.mjs`.
 
 ## Contenu et accessibilité
 

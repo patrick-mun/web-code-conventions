@@ -40,6 +40,8 @@ export default {
     // CSS-23, 24 : pas d'identifiant, deux niveaux au plus
     'selector-max-id': 0,
     'selector-max-compound-selectors': 2,
+    // CSS-24 : pas de classe qualifiée par un élément (ul.menu)
+    'selector-no-qualifying-type': [true, { ignore: ['attribute'] }],
     // CSS-25 : !important interdit sauf dérogation décrite
     'declaration-no-important': true,
 
