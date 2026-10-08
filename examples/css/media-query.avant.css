@@ -1,0 +1,15 @@
+.card {
+  display: flex;
+}
+
+/* … 800 lignes plus loin … */
+
+@media (max-width: 900px) {
+  .card {
+    flex-direction: column;
+  }
+}
+
+.hero-title {
+  animation: fade-up 0.6s ease both;
+}

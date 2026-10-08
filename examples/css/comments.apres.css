@@ -1,0 +1,7 @@
+/* ── BOUTONS ─────────────────────────────
+   Bouton principal et variantes. Couleurs via les tokens d'accent.
+   Les états désactivés sont gérés par .is-disabled (posé par le JS).
+*/
+.btn {
+  margin-top: 3px; /* compense l'alignement de ligne de base de l'icône */
+}

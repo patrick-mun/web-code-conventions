@@ -1,0 +1,13 @@
+.nav-link.is-active {
+  color: var(--accent);
+}
+
+.card-title {
+  font-size: var(--text-lg);
+}
+
+/* Si un !important est vraiment nécessaire : */
+.map-legend {
+  /* stylelint-disable-next-line declaration-no-important -- écrase le style inline injecté par la bibliothèque de carte */
+  color: var(--accent) !important;
+}
