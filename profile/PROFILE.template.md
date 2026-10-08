@@ -8,6 +8,22 @@ projet, jamais l'inverse.
 
 `web-code-conventions` : `v1.0` (tag épinglé)
 
+## Outils
+
+Commande de contrôle lancée avant chaque commit : `npm run lint:css`
+
+Versions testées avec la configuration du skill `v1.0` (à ajuster si le projet
+en épingle d'autres) :
+
+| Outil | Version |
+|---|---|
+| Node | 22 |
+| prettier | 3.9 |
+| stylelint | 17.16 |
+| stylelint-config-standard | 40.0 |
+| stylelint-order | 8.1 |
+| stylelint-declaration-strict-value | 1.12 |
+
 ## Fichier de tokens
 
 Chemin du fichier qui documente les valeurs de conception du projet
