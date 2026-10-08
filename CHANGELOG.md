@@ -6,4 +6,4 @@
 - Règles CSS (`rules/css.md`), exemples et configuration Stylelint/Prettier.
 - Étape « vérifier l'outillage » (`tooling/check-tools.mjs`, CSS seulement) et section « Outils » du profil.
 - Règles HTML (`rules/html.md`), exemples, `htmlvalidate.json`, `check-html.mjs`.
-- JS : à venir.
+- Règles JS (`rules/js.md`), exemples, `eslint.config.mjs`, `check-tools.mjs --lang js`.

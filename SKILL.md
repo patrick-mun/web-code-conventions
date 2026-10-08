@@ -21,7 +21,7 @@ règle absente du tableau s'applique telle quelle.
 ## 2. Vérifier l'outillage (avant d'écrire du code)
 
 Lancer `node tooling/check-tools.mjs <dossier-du-projet> --lang <langage>`
-(le chemin est relatif au dossier du skill ; langages disponibles : `css`, `html`).
+(le chemin est relatif au dossier du skill ; langages disponibles : `css`, `html`, `js`).
 Il liste ce qui est présent ou absent (Node, `package.json`, paquets, fichiers
 de configuration) et sort avec le code 1 s'il manque quelque chose.
 
@@ -51,7 +51,7 @@ installé hors du projet n'est pas vu : le signaler plutôt que conclure à tort
 |---|---|---|
 | CSS | `rules/css.md` | disponible |
 | HTML | `rules/html.md` | disponible |
-| JS | `rules/js.md` | à venir |
+| JS | `rules/js.md` | disponible |
 
 Chaque règle porte un identifiant stable (`CSS-10`) et un mode de contrôle :
 **[AUTO]** contrôlée par un outil de `tooling/`, **[MIXTE]** partiellement
