@@ -14,7 +14,7 @@ Pas de `<style>` ni d'attribut `style=""`, pas de style posé par un attribut
 d'événement (`onmouseover`…). Exception tolérée : une valeur calculée à
 l'exécution, posée par le JS dans une variable CSS
 (`element.style.setProperty('--progress', '40%')`) et consommée par une règle.
-Contrôle : [AUTO] html-validate `no-inline-style`, et recherche de `<style`.
+Contrôle : [AUTO] html-validate `no-inline-style` et `no-style-tag` (voir HTML-20). Côté JS, le complément est JS-11.
 Exemple : `examples/css/inline.avant.html` → `inline.apres.html`.
 
 ### CSS-02 — Découpage par rôle

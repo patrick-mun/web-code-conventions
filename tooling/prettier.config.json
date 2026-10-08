@@ -3,5 +3,8 @@
   "useTabs": false,
   "printWidth": 100,
   "singleQuote": true,
-  "endOfLine": "lf"
+  "endOfLine": "lf",
+  "htmlWhitespaceSensitivity": "css",
+  "semi": true,
+  "trailingComma": "all"
 }

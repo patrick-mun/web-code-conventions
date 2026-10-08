@@ -10,7 +10,7 @@ projet, jamais l'inverse.
 
 ## Outils
 
-Commande de contrôle lancée avant chaque commit : `npm run lint:css`
+Commande de contrôle lancée avant chaque commit : `npm run lint` (par exemple Stylelint pour le CSS, html-validate et `check-html.mjs` pour le HTML)
 
 Versions testées avec la configuration du skill `v1.0` (à ajuster si le projet
 en épingle d'autres) :
@@ -19,10 +19,27 @@ en épingle d'autres) :
 |---|---|
 | Node | 22 |
 | prettier | 3.9 |
+| html-validate | 11.16 |
+| eslint | 10.12 |
+| @eslint/js | 10.0 |
+| globals | 17.13 |
 | stylelint | 17.16 |
 | stylelint-config-standard | 40.0 |
 | stylelint-order | 8.1 |
 | stylelint-declaration-strict-value | 1.12 |
+
+## Organisation du JS (JS-02)
+
+Dossier du point d'entrée par page et dossier des modules partagés :
+
+| Rôle | Chemin |
+|---|---|
+| Point d'entrée par page | `assets/js/pages/` |
+| Modules partagés | `assets/js/lib/` |
+
+## Titre de page (HTML-02)
+
+Format du `<title>` : `Page — Site`
 
 ## Fichier de tokens
 

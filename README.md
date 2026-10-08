@@ -17,7 +17,7 @@ que le skill lit en premier.
 | `profile/` | Modèle et exemple de profil de projet |
 | `tooling/` | Configurations recommandées (Prettier, Stylelint…) |
 
-État : CSS disponible ; HTML et JS à venir (un langage après l'autre).
+État : CSS, HTML et JS disponibles. Le tag `v1.0` suivra la relecture d'ensemble.
 
 ## Installation
 

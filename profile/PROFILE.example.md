@@ -4,6 +4,17 @@
 
 `web-code-conventions` : `v1.0`
 
+## Organisation du JS (JS-02)
+
+| Rôle | Chemin |
+|---|---|
+| Point d'entrée par page | `static/js/views/` |
+| Modules partagés | `static/js/shared/` |
+
+## Titre de page (HTML-02)
+
+Format du `<title>` : `Nom de la page | Atelier Exemple`
+
 ## Fichier de tokens
 
 `docs/design-tokens.md`

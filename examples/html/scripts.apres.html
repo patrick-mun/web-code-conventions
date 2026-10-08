@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <title>Galerie — Site</title>
+    <meta name="description" content="Galerie de photos du site." />
+    <script src="assets/js/gallery.js" defer></script>
+  </head>
+  <body>
+    <header><p>Site</p></header>
+    <main>
+      <h1>Galerie</h1>
+      <nav class="gallery-menu js-gallery-menu" aria-label="Galerie">Menu</nav>
+      <!-- Les données passent par JSON ou par data-*, jamais par du code inline -->
+      <script type="application/json" id="gallery-config">
+        { "pageSize": 12 }
+      </script>
+      <div class="gallery-grid js-gallery-grid" data-reveal-delay="240"></div>
+    </main>
+    <footer><p>Pied de page</p></footer>
+  </body>
+</html>
