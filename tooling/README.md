@@ -5,7 +5,7 @@
 | `prettier.config.json` | Prettier | CSS-30, HTML-50, JS-31 (forme) |
 | `stylelint.config.mjs` | Stylelint | CSS-05, 10 à 12, 14, 20 à 25, 30 à 32, 40 |
 | `htmlvalidate.json` | html-validate | HTML-12, 20, 30, 31, 40, 41 (et part de 01, 10, 11) |
-| `check-html.mjs` | Node, sans dépendance | HTML-01, 10, 21, 22, 43 (analyse par expressions régulières, pages complètes) |
+| `check-html.mjs` | Node, sans dépendance | HTML-01, 10, 21, 22, 33 à 35, 43 (analyse par expressions régulières, pages complètes) |
 | `eslint.config.mjs` | ESLint | JS-01, 10 à 13, 20, 30, 32, 33 |
 | `check-tools.mjs` | Node, sans dépendance | Détection des outils manquants |
 
@@ -45,4 +45,4 @@ Adaptations par projet (CSS) :
 
 Les outils sont vérifiés par `check-tools.mjs`. Configuration vérifiée sur les paires de `examples/css/` : tous les `*.apres.css` passent,
 les `*.avant.css` échouent. Les `*.apres.html` passent html-validate, Prettier et `check-html.mjs`, les
-`*.avant.html` échouent. Les `*.apres.js` passent ESLint et Prettier, les `*.avant.js` échouent. Non couvert par les outils : CSS-02 à 04, 06, 13, 41, 42, 50 à 52, HTML-02, 32, 42, 60, 61 et une partie de HTML-11, 30, 40, 41 ; JS-02, 14, 21 à 23, 40, 50 à 53 et une partie de JS-01, 12, 13, 20, 30.
+`*.avant.html` échouent. Les `*.apres.js` passent ESLint et Prettier, les `*.avant.js` échouent. Non couvert par les outils : CSS-02 à 04, 06, 13, 41 à 43, 50 à 52, HTML-02, 32, 42, 60, 61 et une partie de HTML-11, 30, 40, 41 ; JS-02, 14, 21 à 23, 40, 50 à 53 et une partie de JS-01, 12, 13, 20, 30.

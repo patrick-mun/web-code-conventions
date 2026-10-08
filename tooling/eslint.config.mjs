@@ -31,6 +31,16 @@ export default [
           message: 'JS-10 : sélecteur par classe js- ou attribut data-*',
         },
         {
+          // JS-01 : exports nommés uniquement
+          selector: "ExportDefaultDeclaration, ExportSpecifier[exported.name='default']",
+          message: 'JS-01 : export nommé, pas d\'export par défaut',
+        },
+        {
+          // JS-01 : extension .js obligatoire dans les chemins relatifs
+          selector: 'ImportDeclaration[source.value=/^\\.{1,2}\\//]:not([source.value=/\\.js$/])',
+          message: 'JS-01 : ajouter l\'extension .js au chemin d\'import',
+        },
+        {
           // JS-11 : pas de style direct (classList ou style.setProperty('--variable', …))
           selector: "AssignmentExpression[left.object.property.name='style']",
           message: 'JS-11 : classList ou style.setProperty(--variable)',
@@ -46,6 +56,9 @@ export default [
           message: 'JS-12 : ajouter { passive: true }',
         },
       ],
+
+      // JS-30 : une variable par déclaration
+      'one-var': ['error', 'never'],
 
       // JS-20 : camelCase (les constantes en MAJUSCULES sont admises par la règle)
       camelcase: 'error',

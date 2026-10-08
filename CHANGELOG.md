@@ -7,3 +7,9 @@
 - Étape « vérifier l'outillage » (`tooling/check-tools.mjs`, CSS seulement) et section « Outils » du profil.
 - Règles HTML (`rules/html.md`), exemples, `htmlvalidate.json`, `check-html.mjs`.
 - Règles JS (`rules/js.md`), exemples, `eslint.config.mjs`, `check-tools.mjs --lang js`.
+- Relecture d'ensemble et comparaison aux guides de Google, d'Airbnb, de `stylelint-config-standard` et à WCAG 2.2 :
+  CSS-20 (rôle plutôt qu'apparence), CSS-24 (pas de sélecteur qualifié), CSS-43 (cibles tactiles),
+  HTML-10 (lien d'évitement), HTML-33 à 35 (HTTPS, `type` inutile, entités), JS-01 (exports nommés,
+  extension `.js`), JS-30 (une variable par déclaration), pause des animations de plus de 5 s
+  (CSS-41, JS-40), commentaires en fin de ligne (CSS-52, JS-53).
+- Précisions : JS-12 (travail coûteux seulement), JS-33 (`catch` commenté), HTML-22 et JS-01 alignés.

@@ -6,6 +6,14 @@
   font-size: var(--text-lg);
 }
 
+.menu {
+  margin: 0;
+}
+
+.alert-title {
+  color: var(--danger);
+}
+
 /* Si un !important est vraiment nécessaire : */
 .map-legend {
   /* stylelint-disable-next-line declaration-no-important -- écrase le style inline injecté par la bibliothèque de carte */

@@ -86,9 +86,10 @@ Contrôle : [AUTO] avec CSS-10.
 
 ### CSS-20 — kebab-case à préfixe de composant
 Classes en kebab-case, préfixées par le composant : `.card`, `.card-title`.
-Pas de BEM strict (`__`, `--`).
+Pas de BEM strict (`__`, `--`). Le nom dit le rôle, jamais l'apparence :
+`.card-title`, pas `.big-red` ni `.left-column`.
 Contrôle : [AUTO] `selector-class-pattern` pour le format ; [JUGEMENT] pour le
-choix du préfixe.
+choix du préfixe et pour le rôle plutôt que l'apparence.
 
 ### CSS-21 — Classes d'état
 Un état se note `is-…` ou `has-…` (`.is-open`, `.has-error`), posé par le JS
@@ -105,8 +106,11 @@ Aucun `#id` dans les sélecteurs.
 Contrôle : [AUTO] `selector-max-id: 0`.
 
 ### CSS-24 — Deux niveaux de sélecteurs au plus
-Exemple admis : `.nav-link.is-active`, `.card .card-title`.
-Contrôle : [AUTO] `selector-max-compound-selectors: 2`.
+Exemple admis : `.nav-link.is-active`, `.card .card-title`. Une classe n'est pas
+qualifiée par un élément : `.menu`, pas `ul.menu` (les sélecteurs d'attribut
+comme `input[type="email"]` restent permis).
+Contrôle : [AUTO] `selector-max-compound-selectors: 2` et
+`selector-no-qualifying-type`.
 
 ### CSS-25 — `!important` justifié
 Interdit sauf commentaire de désactivation Stylelint avec description :
@@ -141,12 +145,18 @@ Contrôle : [MIXTE] interdiction en [AUTO] ; qualité du remplaçant en [JUGEMEN
 ### CSS-41 — Mouvement réduit
 Tout mouvement décoratif (animation, transition de position, défilement
 animé) est neutralisé par `@media (prefers-reduced-motion: reduce)`, placée
-juste après la règle concernée (CSS-04).
+juste après la règle concernée (CSS-04). Une animation qui démarre seule et dure
+plus de 5 secondes offre aussi un moyen de la mettre en pause (WCAG 2.2.2).
 Contrôle : [JUGEMENT]
 
 ### CSS-42 — Contrastes
 Texte normal à 4,5:1 au moins, grand texte à 3:1, éléments d'interface à 3:1.
 Contrôle : [JUGEMENT], aidé d'un outil externe (axe, Lighthouse).
+
+### CSS-43 — Cibles tactiles
+Un élément cliquable ou tactile mesure au moins 24×24 px, espacement compris
+(WCAG 2.5.8).
+Contrôle : [JUGEMENT]
 
 ## Commentaires (en français)
 
@@ -173,6 +183,7 @@ description (rôle, dépendances, pièges), `*/` sur sa propre ligne.
 Contrôle : [JUGEMENT]
 
 ### CSS-52 — Commentaire inline
-Seulement pour une valeur non évidente, et il dit pourquoi, pas quoi.
+Seulement pour une valeur non évidente, et il dit pourquoi, pas quoi. Un
+commentaire en fin de ligne n'explique que la valeur de cette ligne.
 Contrôle : [JUGEMENT]
 Exemple : `examples/css/comments.*.css`.
