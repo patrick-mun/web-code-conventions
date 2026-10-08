@@ -75,6 +75,9 @@ export default [
       complexity: ['warn', 10],
       'max-depth': ['warn', 3],
 
+      // JS-34 : fichier de 300 lignes au plus (hors blancs et commentaires), en avertissement
+      'max-lines': ['warn', { max: 300, skipBlankLines: true, skipComments: true }],
+
       // JS-33 : pas de console laissé (no-empty, dans recommended, interdit le catch vide)
       'no-console': 'error',
     },

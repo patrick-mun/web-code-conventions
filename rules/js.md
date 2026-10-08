@@ -28,6 +28,13 @@ Chaque page charge un seul fichier d'entrée, qui importe les modules dont elle
 a besoin. Les modules partagés vivent dans le dossier défini par le profil.
 Contrôle : [JUGEMENT]
 
+### JS-03 — Logique pure séparée du DOM
+Un calcul qui ne touche pas au DOM (géométrie, interpolation, formatage, machine
+à états) vit dans un module qui l'exporte et n'utilise ni `document` ni
+`window`. Le fichier qui branche le DOM l'importe. Une fermeture unique de plus
+de 60 lignes, qui mêle calcul et DOM, est découpée selon cette frontière.
+Contrôle : [JUGEMENT] (JS-32 signale les fonctions trop longues).
+
 ## DOM
 
 ### JS-10 — Accroche par classe `js-` ou `data-*`
@@ -118,6 +125,16 @@ Pas de `console.*` laissé dans le code, pas de `catch` vide sans commentaire
 qui explique pourquoi l'erreur est ignorée.
 Contrôle : [AUTO] ESLint `no-console` et `no-empty`.
 
+### JS-34 — Taille de fichier
+Un fichier JS fait 300 lignes de code au plus (hors lignes vides et
+commentaires). Au-delà, on le scinde par rôle (JS-03). C'est un avertissement.
+Contrôle : [AUTO] ESLint `max-lines`.
+
+### JS-35 — Pas de code mort
+Variable, paramètre, import ou fonction inutilisés sont supprimés, jamais
+commentés.
+Contrôle : [AUTO] ESLint `no-unused-vars` (dans `recommended`).
+
 ## Accessibilité
 
 ### JS-40 — Mouvement réduit
@@ -156,3 +173,16 @@ Contrôle : [JUGEMENT]
 Seulement pour dire pourquoi, jamais ce que fait la ligne. En fin de ligne, il
 n'explique que la valeur de cette ligne.
 Contrôle : [JUGEMENT]
+### JS-54 — Pas de code commenté
+Du code mis en commentaire n'est pas laissé dans le fichier.
+Contrôle : [JUGEMENT]
+
+## Tests
+
+### JS-60 — Tests unitaires des fonctions pures
+Toute fonction pure exportée (JS-03) a des tests dans un fichier `*.test.js`
+voisin, lancés par `node --test` (Node 20 ou plus, aucune dépendance). Un bug
+corrigé reçoit un test qui le reproduit.
+Contrôle : [JUGEMENT] pour la présence des tests ; le lanceur est vérifié par
+`check-tools.mjs --lang js`.
+Exemple : `examples/js/comments-clamp.test.apres.js`.

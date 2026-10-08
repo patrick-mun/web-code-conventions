@@ -54,7 +54,12 @@ const rows = [];
 const add = (name, status, detail = '') => rows.push({ name, status, detail });
 
 // Node
+const nodeMajor = Number(process.versions.node.split('.')[0]);
 add('node', 'présent', process.version);
+if (lang === 'js') {
+  // Le lanceur de tests natif (node --test, JS-60) demande Node 20 ou plus.
+  add('node >= 20', nodeMajor >= 20 ? 'présent' : 'ABSENT', nodeMajor >= 20 ? '' : `version ${process.version} : mettre à jour Node`);
+}
 
 // package.json
 const pkgPath = join(root, 'package.json');

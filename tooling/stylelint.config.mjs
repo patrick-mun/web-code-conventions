@@ -39,6 +39,11 @@ export default {
     'selector-max-compound-selectors': 2,
     // Préfixe Safari conservé : -webkit-backdrop-filter doit rester à côté de backdrop-filter
     'property-no-vendor-prefix': [true, { ignoreProperties: ['-webkit-backdrop-filter'] }],
+    // CSS-15 : jetons nommés par rang ou par rôle, jamais par valeur (--space-24, --text-85…)
+    'custom-property-pattern': [
+      '^(?!(?:space|text|radius|shadow)-(?:neg-)?\\d{2,}(?:px|rem|em)?$)[a-z][a-z0-9]*(-[a-z0-9]+)*$',
+      { message: 'CSS-15 : nommer le jeton par rang ou rôle (--space-3, --text-lg), pas par valeur (--space-24)' },
+    ],
     // CSS-24 : pas de classe qualifiée par un élément (ul.menu)
     'selector-no-qualifying-type': [true, { ignore: ['attribute'] }],
     // CSS-25 : !important interdit sauf dérogation décrite
