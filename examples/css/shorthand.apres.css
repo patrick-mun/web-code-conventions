@@ -1,0 +1,4 @@
+.box {
+  background: linear-gradient(var(--black-50), var(--teal));
+  border: 1px solid var(--white);
+}
