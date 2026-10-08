@@ -46,6 +46,6 @@ réutilisés.
 
 ## Contrôles
 
-Le dossier `tooling/` fournit des configurations de départ. Elles couvrent ce
-qui s'automatise ; le reste (qualité des commentaires, choix des noms) relève
-du jugement et figure en [JUGEMENT] dans les règles.
+Le dossier `tooling/` fournit des configurations de départ et un gabarit de
+vérification en CI (`tooling/ci/verify.yml`). Ils couvrent ce qui s'automatise ; le reste (qualité des commentaires,
+choix des noms) relève du jugement et figure en [JUGEMENT] dans les règles.

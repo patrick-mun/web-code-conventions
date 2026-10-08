@@ -1,0 +1,10 @@
+/* ── TOKENS ─────────────────────────────
+   Valeurs uniquement. Les noms disent le rang ou le rôle, jamais la valeur :
+   si --space-4 passe de 24 px à 32 px, aucun nom ne ment.
+*/
+:root {
+  --space-4: 24px;
+  --space-neg-1: -16px;
+  --text-sm: 0.85rem;
+  --radius-md: 12px;
+}

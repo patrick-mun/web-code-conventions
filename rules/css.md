@@ -84,6 +84,17 @@ demande un nouveau token, ajouté à l'échelle. Pas de `color-mix()` dans les
 règles pour obtenir une opacité.
 Contrôle : [AUTO] avec CSS-10.
 
+### CSS-15 — Jetons nommés par rang ou par rôle
+Les jetons d'espacement, de texte, de rayon et d'ombre se nomment par rang
+(`--space-3`) ou par rôle (`--text-lg`, `--radius-md`, `--shadow-card`), jamais
+par leur valeur (`--space-24`, `--text-85`) : un nom qui contient la valeur
+ment dès qu'elle change. Exception : les jetons d'opacité de CSS-14
+(`--white-60`), dont le pourcentage est le rang dans l'échelle.
+Contrôle : [AUTO] Stylelint `custom-property-pattern` (familles `space`, `text`,
+`radius`, `shadow`). La règle signale aussi chaque
+usage `var(--…)`, ce qui donne la liste complète à modifier lors d'un renommage.
+Exemple : `examples/css/token-names.avant.css` → `token-names.apres.css`.
+
 ## Nommage
 
 ### CSS-20 — kebab-case à préfixe de composant
@@ -118,6 +129,17 @@ Contrôle : [AUTO] `selector-max-compound-selectors: 2` et
 Interdit sauf commentaire de désactivation Stylelint avec description :
 `/* stylelint-disable-next-line declaration-no-important -- raison */`.
 Contrôle : [AUTO] `declaration-no-important` + `reportDescriptionlessDisables`.
+
+## Code mort
+
+### CSS-16 — Pas de classe CSS sans usage
+Une classe définie dans le CSS apparaît dans un attribut `class` du HTML ou dans
+le JS. Sinon elle est supprimée (le dépôt garde l'historique), jamais
+commentée. Les classes ajoutées par une bibliothèque externe se déclarent avec
+`--ignore`.
+Contrôle : [AUTO] `tooling/check-dead-code.mjs` (noms construits en JS reconnus
+par leur préfixe se terminant par un tiret).
+Exemple : `examples/dead-code/avant/` → `apres/`.
 
 ## Mise en forme
 
@@ -189,3 +211,7 @@ Seulement pour une valeur non évidente, et il dit pourquoi, pas quoi. Un
 commentaire en fin de ligne n'explique que la valeur de cette ligne.
 Contrôle : [JUGEMENT]
 Exemple : `examples/css/comments.*.css`.
+### CSS-53 — Pas de code commenté
+Une règle mise en commentaire n'est pas laissée dans le fichier.
+Contrôle : [JUGEMENT]
+

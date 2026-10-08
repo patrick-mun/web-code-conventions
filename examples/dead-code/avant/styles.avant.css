@@ -1,0 +1,15 @@
+.site-logo {
+  color: var(--navy);
+}
+
+.page-title {
+  color: var(--navy);
+}
+
+.old-banner {
+  background: var(--coral);
+}
+
+.promo-ribbon {
+  color: var(--coral);
+}

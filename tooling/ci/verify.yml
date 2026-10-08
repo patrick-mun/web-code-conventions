@@ -1,0 +1,39 @@
+# Gabarit GitHub Actions : vérifie les conventions à chaque push et pull request.
+# À copier dans .github/workflows/verify.yml, puis à adapter (dossiers marqués ← ADAPTER).
+# Non exécuté sur GitHub depuis le dépôt du skill : valider au premier usage.
+name: Vérification des conventions
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+
+      # Présence des outils (code 1 s'il en manque)
+      - run: node .claude/skills/web-code-conventions/tooling/check-tools.mjs . --lang css
+      - run: node .claude/skills/web-code-conventions/tooling/check-tools.mjs . --lang html
+      - run: node .claude/skills/web-code-conventions/tooling/check-tools.mjs . --lang js
+
+      # CSS
+      - run: npx stylelint "assets/css/**/*.css" # ← ADAPTER
+      - run: node .claude/skills/web-code-conventions/tooling/check-dead-code.mjs . # classes CSS inutilisées (CSS-16)
+
+      # HTML
+      - run: npx html-validate "*.html" # ← ADAPTER
+      - run: node .claude/skills/web-code-conventions/tooling/check-html.mjs .
+
+      # JS
+      - run: npx eslint assets/js # ← ADAPTER
+      - run: node --test # tests unitaires (JS-60)
+
+      # Formatage
+      - run: npx prettier --check "**/*.{css,html,js}"
