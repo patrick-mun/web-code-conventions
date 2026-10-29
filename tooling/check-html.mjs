@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// Contrôles HTML que html-validate ne couvre pas (règles HTML-01, 10, 21, 22, 33, 34, 35, 43).
+// Contrôles HTML que html-validate ne couvre pas (règles HTML-01, 10, 21, 22, 33, 34, 35, 40, 43).
 // Usage : node check-html.mjs <fichier-ou-dossier>...
 // Sortie : erreurs (code 1) et avertissements. Analyse par expressions régulières :
 // pages complètes uniquement, les fragments et modèles de gabarit ne sont pas gérés.
@@ -91,6 +91,17 @@ for (const file of targets.flatMap(collect)) {
   // HTML-35 : pas d'entité pour un caractère UTF-8 (hors &lt; &gt; &amp; &quot; &apos; &nbsp;)
   for (const m of text.matchAll(/&(?!(?:lt|gt|amp|quot|apos|nbsp);)(?:[a-z][a-z0-9]*|#\d+|#x[0-9a-f]+);/gi)) {
     report('erreur', m.index, 'HTML-35', `entité ${m[0]} : écrire le caractère UTF-8`);
+  }
+
+  // HTML-40 : un <svg> est décoratif (aria-hidden="true") ou porteur de sens (role="img" + libellé).
+  // Avertissement : décoratif ou non relève du jugement, l'outil signale seulement l'absence de choix.
+  for (const m of text.matchAll(/<svg\b([^>]*)>/gi)) {
+    const attrs = m[1];
+    if (/\saria-hidden\s*=\s*["']true["']/i.test(` ${attrs}`)) continue;
+    const labelled = /\srole\s*=\s*["']img["']/i.test(` ${attrs}`) && /\saria-label(?:ledby)?\s*=/i.test(` ${attrs}`);
+    if (!labelled) {
+      report('avertissement', m.index, 'HTML-40', '<svg> sans aria-hidden="true" ni role="img" avec libellé : trancher décoratif ou porteur de sens');
+    }
   }
 
   // HTML-43 : <br> pour la mise en forme (avertissement : l'intention relève du jugement)

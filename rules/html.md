@@ -108,7 +108,9 @@ Contrôle : [AUTO] `check-html.mjs`.
 ### HTML-40 — Images
 Toute image a un `alt` (`alt=""` si elle est décorative). Un SVG décoratif
 porte `aria-hidden="true"`.
-Contrôle : [MIXTE] html-validate `wcag/h37` pour `alt` ; SVG en [JUGEMENT].
+Contrôle : [MIXTE] html-validate `wcag/h37` pour `alt` ; `check-html.mjs` avertit
+d'un `<svg>` sans `aria-hidden="true"` ni `role="img"` avec libellé. Décoratif ou
+porteur de sens reste un [JUGEMENT] à trancher au cas par cas.
 
 ### HTML-41 — Libellés et liens
 Chaque champ de formulaire a un `<label>`. Un lien a un texte explicite, pas

@@ -1,0 +1,4 @@
+/* Barre de progression : la largeur se met à jour pendant le défilement. */
+.progress {
+  transition: width 120ms linear;
+}

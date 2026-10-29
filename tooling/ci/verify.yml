@@ -25,6 +25,7 @@ jobs:
 
       # CSS
       - run: npx stylelint "assets/css/**/*.css" # ← ADAPTER
+      - run: node .claude/skills/web-code-conventions/tooling/check-css.mjs . # mouvement réduit (CSS-41, avertissements)
       - run: node .claude/skills/web-code-conventions/tooling/check-dead-code.mjs . # classes CSS inutilisées (CSS-16)
 
       # HTML

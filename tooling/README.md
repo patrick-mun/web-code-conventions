@@ -5,8 +5,9 @@
 | `prettier.config.json` | Prettier | CSS-30, HTML-50, JS-31 (forme) |
 | `stylelint.config.mjs` | Stylelint | CSS-05, 10 à 12, 14, 15, 20 à 25, 30 à 32, 40 |
 | `htmlvalidate.json` | html-validate | HTML-12, 20, 30, 31, 40, 41 (et part de 01, 10, 11) |
-| `check-html.mjs` | Node, sans dépendance | HTML-01, 10, 21, 22, 33 à 35, 43 (analyse par expressions régulières, pages complètes) |
+| `check-html.mjs` | Node, sans dépendance | HTML-01, 10, 21, 22, 33 à 35, 40 (SVG, avertissement), 43 (analyse par expressions régulières, pages complètes) |
 | `eslint.config.mjs` | ESLint | JS-01, 10 à 13, 20, 30, 32 à 35 |
+| `check-css.mjs` | Node, sans dépendance | CSS-41 (avertissement : fichier qui anime sans `prefers-reduced-motion`) |
 | `check-dead-code.mjs` | Node, sans dépendance | CSS-16 (classes CSS inutilisées) |
 | `ci/verify.yml` | GitHub Actions | gabarit qui enchaîne tous les contrôles (non exécuté depuis le dépôt du skill) |
 | `check-tools.mjs` | Node, sans dépendance | Détection des outils manquants |
@@ -30,6 +31,7 @@ dossiers parents). Contrôle HTML :
 ```
 npx html-validate "<dossier>/**/*.html"
 node tooling/check-html.mjs <dossier>
+node tooling/check-css.mjs <dossier>         # mouvement réduit (CSS-41, avertissements)
 node tooling/check-dead-code.mjs <dossier>   # classes CSS inutilisées
 node --test                                    # tests unitaires JS-60 (Node 20 ou plus)
 ```
@@ -49,4 +51,4 @@ Adaptations par projet (CSS) :
 
 Les outils sont vérifiés par `check-tools.mjs`. Configuration vérifiée sur les paires de `examples/css/` : tous les `*.apres.css` passent,
 les `*.avant.css` des règles automatisables échouent (`comments.avant.css` et `media-query.avant.css` illustrent des règles de jugement et passent les outils). Les `*.apres.html` passent html-validate, Prettier et `check-html.mjs`, les
-`*.avant.html` échouent. Les `*.apres.js` passent ESLint et Prettier, les `*.avant.js` des règles automatisables échouent (`comments.avant.js` illustre une règle de jugement). Non couvert par les outils : CSS-02 à 04, 06, 13, 41 à 43, 50 à 53, HTML-02, 32, 42, 60, 61 et une partie de HTML-11, 30, 40, 41 ; JS-02, 03, 14, 21 à 23, 40, 50 à 54, 60 et une partie de JS-01, 12, 13, 20, 30.
+`*.avant.html` échouent. Les `*.apres.js` passent ESLint et Prettier, les `*.avant.js` des règles automatisables échouent (`comments.avant.js` illustre une règle de jugement). Non couvert par les outils : CSS-02 à 04, 06, 13, 41 (en partie), 42, 43, 50 à 53, HTML-02, 32, 42, 60, 61 et une partie de HTML-11, 30, 40, 41 ; JS-02, 03, 14, 21 à 23, 40, 50 à 54, 60 et une partie de JS-01, 12, 13, 20, 30.

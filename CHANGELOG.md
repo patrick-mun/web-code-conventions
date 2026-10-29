@@ -18,4 +18,7 @@
 - Test sur un site réel (Genome Réunion) : configuration Stylelint corrigée — les couleurs dans les raccourcis
   (`border`, `background`) sont désormais refusées par une règle dédiée, `border`/`background`/`outline` ne passent
   plus par `strict-value` (faux positifs sur `1px solid var(--x)`), et le préfixe `-webkit-backdrop-filter` est conservé.
+- Outillage de règles de jugement : `check-css.mjs` (CSS-41, mouvement sans `prefers-reduced-motion`) et
+  avertissement HTML-40 dans `check-html.mjs` (`<svg>` sans `aria-hidden` ni `role="img"` avec libellé).
+  Ce sont des avertissements (code 0) : décoratif ou non, et couverture de chaque animation, restent à relire.
 - Précisions : JS-12 (travail coûteux seulement), JS-33 (`catch` commenté), HTML-22 et JS-01 alignés.
