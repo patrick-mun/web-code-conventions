@@ -171,7 +171,10 @@ Tout mouvement décoratif (animation, transition de position, défilement
 animé) est neutralisé par `@media (prefers-reduced-motion: reduce)`, placée
 juste après la règle concernée (CSS-04). Une animation qui démarre seule et dure
 plus de 5 secondes offre aussi un moyen de la mettre en pause (WCAG 2.2.2).
-Contrôle : [JUGEMENT]
+Contrôle : [MIXTE] `check-css.mjs` avertit d'un fichier qui anime sans aucun
+`prefers-reduced-motion` ; le placement et la couverture de chaque animation
+restent en [JUGEMENT].
+Exemple : `examples/css/motion.*.css`.
 
 ### CSS-42 — Contrastes
 Texte normal à 4,5:1 au moins, grand texte à 3:1, éléments d'interface à 3:1.
